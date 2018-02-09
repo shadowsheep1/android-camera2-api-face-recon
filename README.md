@@ -46,11 +46,6 @@ Pre-requisites
 - Android Build Tools v23.0.3
 - Android Support Repository
 
-Screenshots
--------------
-
-<img src="screenshots/main.png" height="400" alt="Screenshot"/> 
-
 Getting Started
 ---------------
 
