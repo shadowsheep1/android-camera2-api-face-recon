@@ -638,25 +638,28 @@ public class Camera2BasicFragment extends Fragment
 
                     mCameraId = cameraId;
 
-    int orientationOffset = mCameraCharacteristics.get(CameraCharacteristics.SENSOR_ORIENTATION);
-    Rect activeArraySizeRect = mCameraCharacteristics.get(CameraCharacteristics.SENSOR_INFO_ACTIVE_ARRAY_SIZE);
+                    int orientationOffset = mCameraCharacteristics.get(CameraCharacteristics.SENSOR_ORIENTATION);
+                    Rect activeArraySizeRect = mCameraCharacteristics.get(CameraCharacteristics.SENSOR_INFO_ACTIVE_ARRAY_SIZE);
 
-    // Face Detection Matrix
-    mFaceDetectionMatrix = new Matrix();
-    mFaceDetectionMatrix.setRotate(orientationOffset);
+                    // Face Detection Matrix
+                    mFaceDetectionMatrix = new Matrix();
+                    // TODO - I guess that is not enough if we have a landscape layout too... 
+                    mFaceDetectionMatrix.setRotate(orientationOffset);
 
-    Log.i("Test", "activeArraySizeRect1: (" + activeArraySizeRect + ") -> " + activeArraySizeRect.width() + ", " + activeArraySizeRect.height());
-    Log.i("Test", "activeArraySizeRect2: " + mPreviewSize.getWidth() + ", " + mPreviewSize.getHeight());
-    float s1 = mPreviewSize.getWidth() / (float)activeArraySizeRect.width();
-    float s2 = mPreviewSize.getHeight() / (float)activeArraySizeRect.height();
-    //float s1 = mOverlayView.getWidth();
-    //float s2 = mOverlayView.getHeight();
-    boolean mirror = true; // we always use front face camera
-    boolean weAreinPortrait = true;
-    mFaceDetectionMatrix.postScale(mirror ? -s1 : s1, s2);
-    if (mSwappedDimensions) {
-        mFaceDetectionMatrix.postTranslate(mPreviewSize.getHeight(), mPreviewSize.getWidth());
-    }
+                    Log.i("Test", "activeArraySizeRect1: (" + activeArraySizeRect + ") -> " + activeArraySizeRect.width() + ", " + activeArraySizeRect.height());
+                    Log.i("Test", "activeArraySizeRect2: " + mPreviewSize.getWidth() + ", " + mPreviewSize.getHeight());
+                    float s1 = mPreviewSize.getWidth() / (float)activeArraySizeRect.width();
+                    float s2 = mPreviewSize.getHeight() / (float)activeArraySizeRect.height();
+                    //float s1 = mOverlayView.getWidth();
+                    //float s2 = mOverlayView.getHeight();
+                    boolean mirror = true; // we always use front face camera
+                    boolean weAreinPortrait = true;
+                    mFaceDetectionMatrix.postScale(mirror ? -s1 : s1, s2);
+                    if (mSwappedDimensions) {
+                        mFaceDetectionMatrix.postTranslate(mPreviewSize.getHeight(), mPreviewSize.getWidth());
+                    } else {
+                        // TODO - ...
+                    }
 
                 }
                 // return;
