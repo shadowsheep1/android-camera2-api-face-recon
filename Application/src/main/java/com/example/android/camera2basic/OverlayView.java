@@ -37,7 +37,7 @@ public class OverlayView extends View {
     public OverlayView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         mCanvas = new Canvas();
-        mRect = new Rect(10,10, 200, 200);
+        //mRect = new Rect(10,10, 200, 200);
         initPaint();
     }
 
@@ -61,7 +61,9 @@ public class OverlayView extends View {
         canvas.drawBitmap(mBitmap, 0, 0, null);
 
         mPaint.setColor(Color.YELLOW);
-        canvas.drawRect(mRect, mPaint);
+        if (null != mRect) {
+            canvas.drawRect(mRect, mPaint);
+        }
     }
 
     /**

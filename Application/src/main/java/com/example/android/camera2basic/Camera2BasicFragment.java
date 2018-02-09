@@ -305,13 +305,14 @@ public class Camera2BasicFragment extends Fragment
                             int top = faces[i].getBounds().top;
                             int right = faces[i].getBounds().right;
                             int bottom = faces[i].getBounds().bottom;
-                            float points[] = {(float)left, (float)top, (float)right, (float)bottom};
+                            //float points[] = {(float)left, (float)top, (float)right, (float)bottom};
 
                             Rect uRect = new Rect(left, top, right, bottom);
                             RectF rectF = new RectF(uRect);
                             mFaceDetectionMatrix.mapRect(rectF);
-                            mFaceDetectionMatrix.mapPoints(points);
-                            uRect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+                            //mFaceDetectionMatrix.mapPoints(points);
+                            rectF.round(uRect);
+                            //uRect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
                             Log.i("Test", "Activity rect" + i + " bounds: " + uRect);
 
                             final Rect rect = uRect;
